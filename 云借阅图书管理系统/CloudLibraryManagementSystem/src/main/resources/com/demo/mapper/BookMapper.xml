@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.BookMapper">
+    <!--修改图书信息-->
+    <update id="editBook">
+        update book
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null and name.trim()!=''">
+                book_name=#{name},
+            </if>
+            <if test="isbn!=null and isbn.trim()!=''">
+                book_isbn=#{isbn},
+            </if>
+            <if test="press!=null and press.trim()!=''">
+                book_press=#{press},
+            </if>
+
+            <if test="author!=null and author.trim()!=''">
+                book_author=#{author},
+            </if>
+            <if test="pagination!=null ">
+                book_pagination=#{pagination},
+            </if>
+            <if test="price!=null ">
+                book_price=#{price},
+            </if>
+            <if test="uploadTime!=null ">
+                book_uploadtime=#{uploadTime},
+            </if>
+            <if test="status!=null ">
+                book_status=#{status},
+            </if>
+            <if test="borrower!=null">
+                book_borrower=#{borrower},
+            </if>
+            <if test="borrowTime ">
+                book_borrowtime=#{borrowTime},
+            </if>
+            <if test="returnTime ">
+                book_returntime=#{returnTime},
+            </if>
+        </trim>
+        where book_id = #{id}
+    </update>
+
+
+    <insert id="addBook">
+        insert into book
+        values (#{id}, #{name}, #{isbn}, #{press}, #{author}, #{pagination},
+                #{price}, #{uploadTime}, #{status}, #{borrower}, #{borrowTime}, #{returnTime})
+    </insert>
+
+
+
+</mapper>
+
+
